@@ -17,7 +17,7 @@ void draw() {
 void keyPressed() {
 
   if (key=='e') {
-    flueListe.add(new Flue(random(1.01,3)));
+    flueListe.add(new Flue(random(1.01, 3)));
   } else {
     flueListe.add(new Flue());
   }
@@ -34,6 +34,7 @@ class Flue {
   float distanceFlyttet;
   float vinkel = 0;
   float skalar=1;
+  float flyt=0.5;
 
 
   //Constructor der laver fluer med anden størrelse
@@ -60,8 +61,17 @@ class Flue {
 
   //Metoden til at flytte
   void flyt() {
-    if(skalar>1.8) distanceFlyttet+=0.3;
-    else distanceFlyttet += 1;
+    if(cos(vinkel)*distanceFlyttet+positionX<0){
+    flyt=abs(flyt);
+    } else if(cos(vinkel)*distanceFlyttet+positionX>width){
+    flyt=-abs(flyt);
+    } else if(sin(vinkel)*distanceFlyttet+positionY<0){
+    flyt=abs(flyt);
+    }
+    else if(sin(vinkel)*distanceFlyttet+positionY>height){
+    flyt=-abs(flyt);
+    }
+    distanceFlyttet += flyt;
   }
 
   //Metoden til at tegne fluer
