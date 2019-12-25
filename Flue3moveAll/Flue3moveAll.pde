@@ -81,11 +81,8 @@ class Flue {
     } else if (sin(vinkel)*distanceFlyttet+positionY>height) {
       positionX+=cos(vinkel)*distanceFlyttet;
       positionY=height;
-      if (vinkel<(3*PI)/2) {
-        vinkel=2*PI-vinkel;
-      } else {
-        vinkel=2*PI-vinkel;
-      }
+      //Den nye vinkel
+      vinkel=2*PI-vinkel;
       distanceFlyttet=0;
     }
 
