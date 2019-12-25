@@ -34,7 +34,6 @@ class Flue {
   float distanceFlyttet;
   float vinkel = 0;
   float skalar=1;
-  float flyt=0.5;
 
 
   //Constructor der laver fluer med anden størrelse
@@ -61,17 +60,36 @@ class Flue {
 
   //Metoden til at flytte
   void flyt() {
-    if(cos(vinkel)*distanceFlyttet+positionX<0){
-    flyt=abs(flyt);
-    } else if(cos(vinkel)*distanceFlyttet+positionX>width){
-    flyt=-abs(flyt);
-    } else if(sin(vinkel)*distanceFlyttet+positionY<0){
-    flyt=abs(flyt);
+    if (cos(vinkel)*distanceFlyttet+positionX<0) {
+      positionY+=sin(vinkel)*distanceFlyttet;
+      positionX=0;
+      //Finder den nye vinkel
+      vinkel=PI-vinkel;
+      distanceFlyttet=0;
+    } else if (cos(vinkel)*distanceFlyttet+positionX>width) {
+      positionY+=sin(vinkel)*distanceFlyttet;
+      positionX=width;
+      //Den nye vinkel
+      vinkel=PI+(2*PI-vinkel);
+      distanceFlyttet=0;
+    } else if (sin(vinkel)*distanceFlyttet+positionY<0) {
+      positionX+=cos(vinkel)*distanceFlyttet;
+      positionY=0;
+      //Den nye vinkel
+      vinkel=2*PI-vinkel;
+      distanceFlyttet=0;
+    } else if (sin(vinkel)*distanceFlyttet+positionY>height) {
+      positionX+=cos(vinkel)*distanceFlyttet;
+      positionY=height;
+      if (vinkel<(3*PI)/2) {
+        vinkel=2*PI-vinkel;
+      } else {
+        vinkel=2*PI-vinkel;
+      }
+      distanceFlyttet=0;
     }
-    else if(sin(vinkel)*distanceFlyttet+positionY>height){
-    flyt=-abs(flyt);
-    }
-    distanceFlyttet += flyt;
+
+    distanceFlyttet += 0.5;
   }
 
   //Metoden til at tegne fluer
