@@ -70,7 +70,7 @@ class Flue {
       positionY+=sin(vinkel)*distanceFlyttet;
       positionX=width;
       //Den nye vinkel
-      vinkel=PI+(2*PI-vinkel);
+      vinkel=PI-vinkel;
       distanceFlyttet=0;
     } else if (sin(vinkel)*distanceFlyttet+positionY<0) {
       positionX+=cos(vinkel)*distanceFlyttet;
