@@ -63,18 +63,21 @@ class Flue {
     if (cos(vinkel)*distanceFlyttet+positionX<0) {
       positionY+=sin(vinkel)*distanceFlyttet;
       positionX=0;
+      
       //Finder den nye vinkel
       vinkel=PI-vinkel;
       distanceFlyttet=0;
     } else if (cos(vinkel)*distanceFlyttet+positionX>width) {
       positionY+=sin(vinkel)*distanceFlyttet;
       positionX=width;
+      
       //Den nye vinkel
       vinkel=PI-vinkel;
       distanceFlyttet=0;
     } else if (sin(vinkel)*distanceFlyttet+positionY<0) {
       positionX+=cos(vinkel)*distanceFlyttet;
       positionY=0;
+      
       //Den nye vinkel
       vinkel=2*PI-vinkel;
       distanceFlyttet=0;
@@ -82,6 +85,7 @@ class Flue {
       positionX+=cos(vinkel)*distanceFlyttet;
       positionY=height;
       //Den nye vinkel
+      
       vinkel=2*PI-vinkel;
       distanceFlyttet=0;
     }
